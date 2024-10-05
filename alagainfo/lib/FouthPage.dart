@@ -26,7 +26,7 @@ class FouthPage extends StatelessWidget{
                 Navigator.push(context,
                 MaterialPageRoute(builder: (context) => FifthPage()));
               },
-              child: Image(image: AssetImage('images/seta.png'), height: 50, width: 50,))
+              child: Image(image: AssetImage('images/seta.jpeg'), height: 50, width: 50,))
           ],
         ),
       ),
