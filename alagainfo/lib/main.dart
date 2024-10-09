@@ -1,6 +1,7 @@
 import 'package:alagainfo/onboard.dart';
 import 'package:flutter/material.dart';
 import 'package:alagainfo/SecondPage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main(){
   runApp(AlagaInfo());  
@@ -11,7 +12,7 @@ class AlagaInfo extends StatelessWidget{
 @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Onboarding()
+      home: MyHomePage()
     );
   }
 }
@@ -30,19 +31,52 @@ class MyHomePage extends StatelessWidget{
             SizedBox(height: 20), // Espaçamento entre o texto e a imagem
             Image(image: AssetImage('images/Inicio.png')),
             Container(
-                child: Text("AlagaInfo",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black,),
-                ),
+              child:
+              Column(
+                children: [
+                  RichText(
+  text: TextSpan(
+    children: [
+      TextSpan(
+        text: 'Alaga',
+        style: GoogleFonts.lato(
+          textStyle: TextStyle(
+            fontSize: 45,
+              color: Color(0xFF87AAD2), // Corrigido para usar o código de cor hexadecimalr
+            fontWeight: FontWeight.bold, // Deixa o texto em negrito
+          ),
+        ),
+      ),
+      TextSpan(
+        text: ' ',
+      ), // Espaçamento entre os textos
+      TextSpan(
+        text: 'Info',
+        style: GoogleFonts.lato(
+          textStyle: TextStyle(
+            fontSize: 45,
+            color: Colors.black,
+            fontWeight: FontWeight.bold, // Deixa o texto em negrito
+          ),
+        ),
+      ),
+    ],
+  ),
+)
+                ]
+
+              )
             ),
+
             Container(
                 child: Text("Informe-se & Cuide-se",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black,),
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold, // Deixa o texto em negrito
+                  ),
+                  
                 ),
             ),
             ElevatedButton(
