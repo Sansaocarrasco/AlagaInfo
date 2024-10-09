@@ -1,3 +1,4 @@
+import 'package:alagainfo/onboard.dart';
 import 'package:flutter/material.dart';
 import 'package:alagainfo/SecondPage.dart';
 
@@ -10,7 +11,7 @@ class AlagaInfo extends StatelessWidget{
 @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage()
+      home: Onboarding()
     );
   }
 }
@@ -45,14 +46,19 @@ class MyHomePage extends StatelessWidget{
                 ),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+              shape: CircleBorder(),
+              padding: EdgeInsets.all(0),
+              ),
               onPressed: (){
                 Navigator.push(context,
                 MaterialPageRoute(builder: (context) => SecondPage()));
               },
-              child: Image(image: AssetImage('images/seta.jpeg'), height: 50, width: 50,)
-              style: ButtonStyle(
-                shape: BorderRadius.circular(2),
-              ),z
+              child: Icon(Icons.arrow_circle_right_outlined,
+              color: Colors.black,
+              size: 40, 
+              ),
+              
               )
           ],
         ),

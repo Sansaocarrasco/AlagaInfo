@@ -24,11 +24,20 @@ class ThirdPage extends StatelessWidget{
                 ),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+              shape: CircleBorder(),
+              padding: EdgeInsets.all(0),
+              ),
               onPressed: (){
                 Navigator.push(context,
                 MaterialPageRoute(builder: (context) => FouthPage()));
               },
-              child: Image(image: AssetImage('images/seta.jpeg'), height: 50, width: 50,))
+              child: Icon(Icons.arrow_circle_right_outlined,
+              color: Colors.black,
+              size: 40, 
+              ),
+              
+              )
           ],
         ),
       ),
