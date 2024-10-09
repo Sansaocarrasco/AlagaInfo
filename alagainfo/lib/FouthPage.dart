@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:alagainfo/FifthPage.dart';
+import 'package:alagainfo/MapScreen.dart';
 
 class FouthPage extends StatelessWidget{
   @override
@@ -28,7 +28,7 @@ class FouthPage extends StatelessWidget{
               ),
               onPressed: (){
                 Navigator.push(context,
-                MaterialPageRoute(builder: (context) => FifthPage()));
+                MaterialPageRoute(builder: (context) => MapScreen()));
               },
               child: Icon(Icons.arrow_circle_right_outlined,
               color: Colors.black,
