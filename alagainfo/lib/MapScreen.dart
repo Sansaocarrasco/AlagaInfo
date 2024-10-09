@@ -43,7 +43,7 @@ class MapScreen extends StatelessWidget {
       borderStrokeWidth: 3.0,
       color: Colors.red.withOpacity(0.4),
     ),
-    //
+    // Antonio Cassimiro
     Polygon(
       points: [
         LatLng(-9.370697053061356, -40.52242682629748),
