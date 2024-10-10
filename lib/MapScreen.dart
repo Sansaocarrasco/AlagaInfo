@@ -22,9 +22,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MapScreen extends StatelessWidget {
+class MapScreen extends StatefulWidget {
+  @override
+  _MapScreenState createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
   final List<Polygon> polygons = [
-    // Jardim Amazonas
+    // Jardim Amazonas (Vermelho)
     Polygon(
       points: [
         LatLng(-9.37521406536559, -40.53755448438904),
@@ -41,9 +46,9 @@ class MapScreen extends StatelessWidget {
       ],
       borderColor: Colors.white,
       borderStrokeWidth: 3.0,
-      color: Colors.red.withOpacity(0.4),
+      color: Colors.red.withOpacity(0.4), // Vermelho para alto risco
     ),
-    // Antonio Cassimiro
+    // Antonio Cassimiro (Verde)
     Polygon(
       points: [
         LatLng(-9.370697053061356, -40.52242682629748),
@@ -91,14 +96,39 @@ class MapScreen extends StatelessWidget {
       ],
       borderColor: Colors.white,
       borderStrokeWidth: 3.0,
-      color: Colors.red.withOpacity(0.4),
+      color: Colors.green.withOpacity(0.4), // Verde para baixo risco
     ),
   ];
 
-  final List<String> messages = [
-    'A região em questão possui uma chance alta de ser alagável. Macrodrenagem: Nenhuma',
-    'A região em questão possui uma chance alta de ser alagável. Macrodrenagem: Riacho Porteiras, 5 Lagoa.',
+  // Listas de mensagens divididas
+  final List<String> generalMessages = [
+    'A região apresenta riscos elevados de alagamento.',
+    'A região apresenta risco moderado de alagamento.',
   ];
+
+  final List<String> macrodrenagemMessages = [
+    'Macrodrenagem: Nenhuma.',
+    'Macrodrenagem: Riacho Porteiras, 5 Lagoa.',
+  ];
+
+  final List<String> conclusionMessages = [
+    'Conclusão: Alta chance de alagamento.',
+    'Conclusão: Baixa chance de alagamento.',
+  ];
+
+  String selectedMessageGeneral = "";
+  String selectedMessageMacrodrenagem = "";
+  String selectedMessageConclusion = "";
+  Color selectedPolygonColor = Colors.transparent;
+
+  void _setSelectedMessages(int index) {
+    setState(() {
+      selectedMessageGeneral = generalMessages[index];
+      selectedMessageMacrodrenagem = macrodrenagemMessages[index];
+      selectedMessageConclusion = conclusionMessages[index];
+      selectedPolygonColor = polygons[index].color!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,43 +136,74 @@ class MapScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Delimitação de Bairros'),
       ),
-      body: FlutterMap(
-        options: MapOptions(
-          initialCenter: LatLng(-9.37521406536559, -40.53755448438904),
-          initialZoom: 15.0,
-          onTap: (tapPosition, point) {
-            // Verifica qual polígono foi clicado
-            for (int i = 0; i < polygons.length; i++) {
-              if (isPointInPolygon(point, polygons[i].points)) {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text('Informações: '),
-                      content: Text(messages[i]),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('Fechar'),
+      body: Stack(
+        children: [
+          FlutterMap(
+            options: MapOptions(
+              initialCenter: LatLng(-9.37521406536559, -40.53755448438904),
+              initialZoom: 15.0,
+              onTap: (tapPosition, point) {
+                // Verifica qual polígono foi clicado
+                for (int i = 0; i < polygons.length; i++) {
+                  if (isPointInPolygon(point, polygons[i].points)) {
+                    _setSelectedMessages(i);
+                    break;
+                  }
+                }
+              },
+            ),
+            children: [
+              TileLayer(
+                urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                subdomains: ['a', 'b', 'c'],
+              ),
+              PolygonLayer(
+                polygons: polygons,
+              ),
+            ],
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.30, // Aumentado para 35%
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      selectedMessageGeneral,
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                    Text(
+                      selectedMessageMacrodrenagem,
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          selectedMessageConclusion,
+                          style: TextStyle(
+                            color: Colors.black, // Cor padrão para o texto
+                            fontSize: 16,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Container(
+                          width: 50,
+                          height: 20,
+                          color: selectedPolygonColor,
+
                         ),
                       ],
-                    );
-                  },
-                );
-                break; // Para sair do loop após encontrar o polígono
-              }
-            }
-          },
-        ),
-        children: [
-          TileLayer(
-            urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            subdomains: ['a', 'b', 'c'],
-          ),
-          PolygonLayer(
-            polygons: polygons,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
       ),
