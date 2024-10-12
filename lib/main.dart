@@ -1,4 +1,3 @@
-import 'package:alagainfo/onboard.dart';
 import 'package:flutter/material.dart';
 import 'package:alagainfo/SecondPage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,6 +25,7 @@ class MyHomePage extends StatelessWidget{
     backgroundColor: Colors.white,
       body: Center(
         child: Column(
+
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 20), // Espaçamento entre o texto e a imagem
