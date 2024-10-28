@@ -1,3 +1,5 @@
+import 'package:alagainfo/FifthPage.dart';
+import 'package:alagainfo/SixthPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -166,17 +168,16 @@ class _MapScreenState extends State<MapScreen> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            // Lógica para a transição de tela esquerda
-                            // Exemplo: Navigator.push(...)
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => FifthPage()));
                           },
-                          child: Text("Tela Esquerda"),
+                          child: Text("Quem Somos"),
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            // Lógica para a transição de tela direita
-                            // Exemplo: Navigator.push(...)
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => SixthPage()));
                           },
-                          child: Text("Tela Direita"),
+                          child: Text("Legislações"),
                         ),
                       ],
                     ),
