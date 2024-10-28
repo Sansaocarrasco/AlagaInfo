@@ -76,4 +76,11 @@ class PolygonData {
       ),
     ];
   }
+
+  // Novo método para obter a cor do polígono por índice
+  static Color getPolygonColor(int index) {
+    if (index == 0) return Colors.red; // Jardim Amazonas
+    if (index == 1) return Colors.green; // Antonio Cassimiro
+    return Colors.transparent; // Caso inválido
+  }
 }

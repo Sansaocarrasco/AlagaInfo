@@ -1,8 +1,8 @@
 import 'package:alagainfo/MapScreen.dart';
-import 'package:alagainfo/SixthPage.dart';
+import 'package:alagainfo/EnvironmentalLawsPage.dart';
 import 'package:flutter/material.dart';
 
-class FifthPage extends StatelessWidget {
+class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,8 +110,9 @@ class FifthPage extends StatelessWidget {
               ),
             ),
           ),
-          // Barra de navegação personalizada
+          // Barra de navegação
           Container(
+            width: double.infinity, // Ocupa toda a largura
             color: Color.fromARGB(255, 62, 80, 119), // Cor da barra de navegação
             padding: const EdgeInsets.all(10),
             child: Row(
@@ -120,7 +121,7 @@ class FifthPage extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.home, color: Colors.white),
                   onPressed: () {
-                    // Navegar para a página atual
+                    //
                   },
                 ),
                 IconButton(
@@ -132,7 +133,7 @@ class FifthPage extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.settings, color: Colors.white),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SixthPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => EnvironmentalLawsPage()));
                   },
                 ),
               ],

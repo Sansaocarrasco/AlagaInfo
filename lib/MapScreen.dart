@@ -1,29 +1,9 @@
-import 'package:alagainfo/FifthPage.dart';
-import 'package:alagainfo/SixthPage.dart';
+import 'package:alagainfo/AboutUsPage.dart';
+import 'package:alagainfo/EnvironmentalLawsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:alagainfo/PolygonData.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: MapScreen(),
-    );
-  }
-}
 
 class MapScreen extends StatefulWidget {
   @override
@@ -37,7 +17,6 @@ class _MapScreenState extends State<MapScreen> {
     'Antonio Cassimiro',
   ];
 
-  // Listas de mensagens divididas
   final List<String> generalMessages = [
     'A região apresenta riscos elevados de alagamento.',
     'A região apresenta risco moderado de alagamento.',
@@ -56,8 +35,10 @@ class _MapScreenState extends State<MapScreen> {
   String selectedMessageGeneral = "";
   String selectedMessageMacrodrenagem = "";
   String selectedMessageConclusion = "";
-  String selectedNeighborhoodName = ""; // Nome do bairro selecionado
+  String selectedNeighborhoodName = "";
   Color selectedPolygonColor = Colors.transparent;
+  int? previousIndex; 
+  bool isInfoVisible = false; 
 
   @override
   void initState() {
@@ -67,18 +48,29 @@ class _MapScreenState extends State<MapScreen> {
 
   void _setSelectedMessages(int index) {
     setState(() {
+      if (previousIndex != null) {
+        polygons[previousIndex!] = Polygon(
+          points: polygons[previousIndex!].points,
+          borderColor: polygons[previousIndex!].borderColor,
+          borderStrokeWidth: polygons[previousIndex!].borderStrokeWidth,
+          color: polygons[previousIndex!].color!.withOpacity(0.0),
+        );
+      }
+
       selectedMessageGeneral = generalMessages[index];
       selectedMessageMacrodrenagem = macrodrenagemMessages[index];
       selectedMessageConclusion = conclusionMessages[index];
-      selectedNeighborhoodName = neighborhoodNames[index]; // Atualiza o bairro
-      selectedPolygonColor = polygons[index].color!; // Cor correspondente ao polígono selecionado
-      // Alterar a cor do polígono selecionado
+      selectedNeighborhoodName = neighborhoodNames[index];
+      selectedPolygonColor = PolygonData.getPolygonColor(index);
       polygons[index] = Polygon(
         points: polygons[index].points,
         borderColor: polygons[index].borderColor,
         borderStrokeWidth: polygons[index].borderStrokeWidth,
-        color: polygons[index].color!.withOpacity(0.4), // Revela a cor ao selecionar
+        color: polygons[index].color!.withOpacity(0.4),
       );
+
+      previousIndex = index; 
+      isInfoVisible = true; 
     });
   }
 
@@ -86,104 +78,105 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Delimitação de Bairros'),
+        title: Text(
+          'Mapa de Regiões',
+          style: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Color.fromARGB(255, 62, 80, 119), // Cor da barra superior igual à inferior
+        automaticallyImplyLeading: false, // Remove o botão de retorno
       ),
-      body: Stack(
+      body: Column(
         children: [
-          FlutterMap(
-            options: MapOptions(
-              initialCenter: LatLng(-9.37521406536559, -40.53755448438904),
-              initialZoom: 15.0,
-              onTap: (tapPosition, point) {
-                // Verifica qual polígono foi clicado
-                for (int i = 0; i < polygons.length; i++) {
-                  if (isPointInPolygon(point, polygons[i].points)) {
-                    _setSelectedMessages(i);
-                    break;
+          Flexible(
+            flex: 5,
+            child: FlutterMap(
+              options: MapOptions(
+                initialCenter: LatLng(-9.37521406536559, -40.53755448438904),
+                initialZoom: 15.0,
+                onTap: (tapPosition, point) {
+                  for (int i = 0; i < polygons.length; i++) {
+                    if (isPointInPolygon(point, polygons[i].points)) {
+                      _setSelectedMessages(i);
+                      break;
+                    }
                   }
-                }
-              },
+                },
+              ),
+              children: [
+                TileLayer(
+                  urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  subdomains: ['a', 'b', 'c'],
+                ),
+                PolygonLayer(
+                  polygons: polygons,
+                ),
+              ],
             ),
-            children: [
-              TileLayer(
-                urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                subdomains: ['a', 'b', 'c'],
-              ),
-              PolygonLayer(
-                polygons: polygons,
-              ),
-            ],
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.30,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center, // Centraliza o conteúdo
-                  children: [
-                    Text(
-                      selectedNeighborhoodName, // Exibe o nome do bairro
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+          if (isInfoVisible) 
+            Flexible(
+              flex: 2,
+              child: Container(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        selectedNeighborhoodName,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center, // Centraliza o texto
-                    ),
-                    SizedBox(height: 8), // Espaço entre o nome do bairro e as mensagens
-                    Text(
-                      selectedMessageGeneral,
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                    Text(
-                      selectedMessageMacrodrenagem,
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center, // Centraliza a linha
-                      children: [
-                        Text(
-                          selectedMessageConclusion,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(width: 10),
-                        Container(
-                          width: 50,
-                          height: 20,
-                          color: selectedPolygonColor,
-                        ),
-                      ],
-                    ),
-                    Spacer(), // Para empurrar os botões para baixo
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => FifthPage()));
-                          },
-                          child: Text("Quem Somos"),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => SixthPage()));
-                          },
-                          child: Text("Legislações"),
-                        ),
-                      ],
-                    ),
-                  ],
+                      SizedBox(height: 8),
+                      Text(
+                        selectedMessageGeneral,
+                        style: TextStyle(color: selectedPolygonColor, fontSize: 16),
+                      ),
+                      Text(
+                        selectedMessageMacrodrenagem,
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                      Text(
+                        selectedMessageConclusion,
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                    ],
+                  ),
                 ),
               ),
+            ),
+          Container(
+            width: double.infinity,
+            color: Color.fromARGB(255, 62, 80, 119),
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.home, color: Colors.white),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUsPage()));
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.info, color: Colors.white),
+                  onPressed: () {
+                    //
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.settings, color: Colors.white),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => EnvironmentalLawsPage()));
+                  },
+                ),
+              ],
             ),
           ),
         ],
@@ -204,7 +197,7 @@ class _MapScreenState extends State<MapScreen> {
           oddNodes = !oddNodes;
         }
       }
-      j = i; // j é o último vértice
+      j = i;
     }
     return oddNodes;
   }
