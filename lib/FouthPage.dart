@@ -11,7 +11,7 @@ class FouthPage extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 20), // Espaçamento entre o texto e a imagem
-            Image(image: AssetImage('images/Inicio-4.png')),
+            Image(image: AssetImage('assets/images/Inicio-4.png')),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: Text("Por fim, observe as informações a cerca da localidade desejada. As cores referentes as regiões informam a vúlnerabilidade do local.",

@@ -29,7 +29,7 @@ class MyHomePage extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 20), // Espaçamento entre o texto e a imagem
-            Image(image: AssetImage('images/Inicio.png')),
+            Image(image: AssetImage('assets/images/Inicio.png')),
             Container(
               child:
               Column(

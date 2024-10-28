@@ -52,7 +52,7 @@ class AboutUsPage extends StatelessWidget {
                   SizedBox(height: 20), // Espaçamento entre o cabeçalho e a imagem
                   // Imagem
                   Image.asset(
-                    'images/pet.png',
+                    'assets/images/pet.png',
                     height: 400, // Diminuindo a altura da imagem
                   ),
                   SizedBox(height: 10), // Espaçamento reduzido entre a imagem e o texto
@@ -86,19 +86,19 @@ class AboutUsPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Espaçamento igual entre as logos
                     children: [
                       Image.asset(
-                        'images/lea-logo.png',
+                        'assets/images/lea-logo.png',
                         height: 80,
                         width: 80,
                         fit: BoxFit.contain,
                       ),
                       Image.asset(
-                        'images/pet-logo.png',
+                        'assets/images/pet-logo.png',
                         height: 80,
                         width: 80,
                         fit: BoxFit.contain,
                       ),
                       Image.asset(
-                        'images/univasf-logo.png',
+                        'assets/images/univasf-logo.png',
                         height: 80,
                         width: 80,
                         fit: BoxFit.contain,

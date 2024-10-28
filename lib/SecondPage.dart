@@ -12,7 +12,7 @@ class SecondPage extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 20), // Espaçamento entre o texto e a imagem
-            Image(image: AssetImage('images/Inicio-2.png')),
+            Image(image: AssetImage('assets/images/Inicio-2.png')),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: Text("Bem vindo ao AlagaInfo, seu aplicativo informativo sobre as regiões críticasde alagamento em Petrolina/PE. O objetivo do aplicativo é te informar se o local informado é uma região sucetível a alagamento.",
