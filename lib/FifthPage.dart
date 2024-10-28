@@ -14,7 +14,7 @@ class FifthPage extends StatelessWidget{
             Image(image: AssetImage('images/Inicio-4.png')),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-                child: Text("Por fim, observe as informações a cerca da localidade desejada. As cores reerentes as regiões informam a vúlnerabilidade do local.",
+                child: Text("Por fim, observe as informações a cerca da localidade desejada. As cores referentes as regiões informam a vúlnerabilidade do local.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 15,

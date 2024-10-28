@@ -22,7 +22,7 @@ class PolygonData {
         ],
         borderColor: Colors.white,
         borderStrokeWidth: 3.0,
-        color: Colors.red.withOpacity(0.4), // Vermelho para alto risco
+        color: Colors.red.withOpacity(0), // Cor escondida inicialmente
       ),
       // Antonio Cassimiro (Verde)
       Polygon(
@@ -72,7 +72,7 @@ class PolygonData {
         ],
         borderColor: Colors.white,
         borderStrokeWidth: 3.0,
-        color: Colors.green.withOpacity(0.4), // Verde para baixo risco
+        color: Colors.green.withOpacity(0), // Cor escondida inicialmente
       ),
     ];
   }
