@@ -4,11 +4,12 @@ import 'MapScreen.dart';
 
 class EnvironmentalLawsPage extends StatelessWidget {
   final List<String> laws = [
-    "Lei 12.651/2012 - Código Florestal",
-    "Lei 9.605/1998 - Lei de Crimes Ambientais",
-    "Lei 10.650/2003 - Política Nacional de Resíduos Sólidos",
-    "Lei 9.433/1997 - Política Nacional de Recursos Hídricos",
+    "Lei 12.651/2012 - Novo Código Florestal Brasileiro",
+    "Lei 14026/2020 - Novo Marco Legal do Saneamento Básico",
     "Lei 6.938/1981 - Política Nacional do Meio Ambiente",
+    "Lei 9.433/1997 - Política Nacional dos Recursos Hidricos",
+    "Lei 12305/2010 - Politica Nacional de Residuos Solidos",
+    "Lei 9605/1998 - Lei de Crimes Ambientais",
   ];
 
   @override
