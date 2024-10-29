@@ -1,5 +1,5 @@
-import 'package:alagainfo/MapScreen.dart';
 import 'package:alagainfo/EnvironmentalLawsPage.dart';
+import 'package:alagainfo/MapScreen.dart';
 import 'package:flutter/material.dart';
 
 class AboutUsPage extends StatelessWidget {
@@ -88,19 +88,19 @@ class AboutUsPage extends StatelessWidget {
                       Image.asset(
                         'assets/images/lea-logo.png',
                         height: 80,
-                        width: 80,
+                        width: 100,
                         fit: BoxFit.contain,
                       ),
                       Image.asset(
                         'assets/images/pet-logo.png',
                         height: 80,
-                        width: 80,
+                        width: 100,
                         fit: BoxFit.contain,
                       ),
                       Image.asset(
                         'assets/images/univasf-logo.png',
                         height: 80,
-                        width: 80,
+                        width: 100,
                         fit: BoxFit.contain,
                       ),
                     ],
@@ -112,26 +112,26 @@ class AboutUsPage extends StatelessWidget {
           ),
           // Barra de navegação
           Container(
-            width: double.infinity, // Ocupa toda a largura
-            color: Color.fromARGB(255, 62, 80, 119), // Cor da barra de navegação
+            width: double.infinity,
+            color: Color.fromARGB(255, 62, 80, 119),
             padding: const EdgeInsets.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                  icon: Icon(Icons.home, color: Colors.white),
+                  icon: Icon(Icons.supervisor_account_rounded, color: Colors.white),
                   onPressed: () {
                     //
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.info, color: Colors.white),
+                  icon: Icon(Icons.map, color: Colors.white),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => MapScreen()));
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.settings, color: Colors.white),
+                  icon: Icon(Icons.balance, color: Colors.white),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => EnvironmentalLawsPage()));
                   },

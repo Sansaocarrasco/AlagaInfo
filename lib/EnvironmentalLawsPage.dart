@@ -67,21 +67,21 @@ class EnvironmentalLawsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
-              icon: Icon(Icons.home, color: Colors.white),
+              icon: Icon(Icons.supervisor_account_rounded, color: Colors.white),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUsPage()));
               },
             ),
             IconButton(
-              icon: Icon(Icons.info, color: Colors.white),
+              icon: Icon(Icons.map, color: Colors.white),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => MapScreen()));
               },
             ),
             IconButton(
-              icon: Icon(Icons.settings, color: Colors.white),
+              icon: Icon(Icons.balance, color: Colors.white),
               onPressed: () {
-                // Ação para o botão de configurações
+                //
               },
             ),
           ],

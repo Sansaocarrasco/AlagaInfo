@@ -15,7 +15,7 @@ class ThirdPage extends StatelessWidget{
             Image(image: AssetImage('assets/images/Inicio-3.png')), //Diminuir o tamanho da imagem
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-                child: Text("Bem vindo ao AlagaInfo, seu aplicativo informativo sobre as regiões críticasde alagamento em Petrolina/PE. O objetivo do aplicativo é te informar se o local informado é uma região sucetível a alagamento.",
+                child: Text("No “Mapa Informativo”, escolha a região que você gostaria de obter as informações de alagamento",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 15,

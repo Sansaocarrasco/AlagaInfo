@@ -37,8 +37,10 @@ class _MapScreenState extends State<MapScreen> {
   String selectedMessageConclusion = "";
   String selectedNeighborhoodName = "";
   Color selectedPolygonColor = Colors.transparent;
-  int? previousIndex; 
-  bool isInfoVisible = false; 
+  int? previousIndex;
+  bool isInfoVisible = false;
+
+  final MapController mapController = MapController();
 
   @override
   void initState() {
@@ -69,8 +71,8 @@ class _MapScreenState extends State<MapScreen> {
         color: polygons[index].color!.withOpacity(0.4),
       );
 
-      previousIndex = index; 
-      isInfoVisible = true; 
+      previousIndex = index;
+      isInfoVisible = true;
     });
   }
 
@@ -79,18 +81,19 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Mapa de Regiões',
+          'Mapa Informativo',
           style: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 62, 80, 119), // Cor da barra superior igual à inferior
-        automaticallyImplyLeading: false, // Remove o botão de retorno
+        backgroundColor: Color.fromARGB(255, 62, 80, 119),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         children: [
           Flexible(
             flex: 5,
             child: FlutterMap(
+              mapController: mapController,
               options: MapOptions(
                 initialCenter: LatLng(-9.37521406536559, -40.53755448438904),
                 initialZoom: 15.0,
@@ -98,6 +101,8 @@ class _MapScreenState extends State<MapScreen> {
                   for (int i = 0; i < polygons.length; i++) {
                     if (isPointInPolygon(point, polygons[i].points)) {
                       _setSelectedMessages(i);
+                      // Move the map to the tapped point
+                      mapController.move(point, 14.9);
                       break;
                     }
                   }
@@ -137,14 +142,17 @@ class _MapScreenState extends State<MapScreen> {
                       Text(
                         selectedMessageGeneral,
                         style: TextStyle(color: selectedPolygonColor, fontSize: 16),
+                        textAlign: TextAlign.center,
                       ),
                       Text(
                         selectedMessageMacrodrenagem,
                         style: TextStyle(color: Colors.black, fontSize: 16),
+                        textAlign: TextAlign.center,
                       ),
                       Text(
                         selectedMessageConclusion,
                         style: TextStyle(color: Colors.black, fontSize: 16),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
@@ -159,19 +167,19 @@ class _MapScreenState extends State<MapScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                  icon: Icon(Icons.home, color: Colors.white),
+                  icon: Icon(Icons.supervisor_account_rounded, color: Colors.white),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUsPage()));
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.info, color: Colors.white),
+                  icon: Icon(Icons.map, color: Colors.white),
                   onPressed: () {
                     //
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.settings, color: Colors.white),
+                  icon: Icon(Icons.balance, color: Colors.white),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => EnvironmentalLawsPage()));
                   },
