@@ -12,26 +12,12 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late List<Polygon> polygons;
-  final List<String> neighborhoodNames = [
-    'Jardim Amazonas',
-    'Antonio Cassimiro',
-  ];
-
-  final List<String> generalMessages = [
-    'A região apresenta riscos elevados de alagamento.',
-    'A região apresenta risco moderado de alagamento.',
-  ];
-
-  final List<String> macrodrenagemMessages = [
-    'Macrodrenagem: Nenhuma.',
-    'Macrodrenagem: Riacho Porteiras, 5 Lagoa.',
-  ];
-
-  final List<String> conclusionMessages = [
-    'Conclusão: Alta chance de alagamento.',
-    'Conclusão: Baixa chance de alagamento.',
-  ];
-
+  
+  // Novo modelo para armazenar mensagens e dados por índice
+  Map<int, Map<String, String>> polygonMessages = {};
+  Map<int, Color> polygonColors = {};
+  Map<int, String> polygonNames = {};
+  
   String selectedMessageGeneral = "";
   String selectedMessageMacrodrenagem = "";
   String selectedMessageConclusion = "";
@@ -46,29 +32,52 @@ class _MapScreenState extends State<MapScreen> {
   void initState() {
     super.initState();
     polygons = PolygonData.getPolygons();
+
+    // Inicializando as mensagens e as cores dos polígonos
+    _loadPolygonData();
   }
 
+  // Função para carregar dados dos polígonos de maneira flexível
+  void _loadPolygonData() {
+    // Exemplo de como você pode carregar dados dinamicamente
+    for (int i = 0; i < polygons.length; i++) {
+      polygonMessages[i] = {
+        'general': 'Mensagem geral para o polígono $i',
+        'macrodrenagem': 'Macrodrenagem para o polígono $i',
+        'conclusion': 'Conclusão para o polígono $i',
+      };
+
+      polygonNames[i] = 'Nome do Polígono $i';
+      polygonColors[i] = PolygonData.getPolygonColor(i); // Usando a cor do PolygonData
+    }
+  }
+
+  // Função para atualizar as mensagens e cores com base no índice
   void _setSelectedMessages(int index) {
     setState(() {
       if (previousIndex != null) {
+        // Retorna o polígono anterior para a cor original (transparente)
         polygons[previousIndex!] = Polygon(
           points: polygons[previousIndex!].points,
           borderColor: polygons[previousIndex!].borderColor,
           borderStrokeWidth: polygons[previousIndex!].borderStrokeWidth,
-          color: polygons[previousIndex!].color!.withOpacity(0.0),
+          color: Colors.transparent, // Mantém transparente quando desmarcado
         );
       }
 
-      selectedMessageGeneral = generalMessages[index];
-      selectedMessageMacrodrenagem = macrodrenagemMessages[index];
-      selectedMessageConclusion = conclusionMessages[index];
-      selectedNeighborhoodName = neighborhoodNames[index];
-      selectedPolygonColor = PolygonData.getPolygonColor(index);
+      // Atualizando as mensagens e dados do polígono
+      selectedMessageGeneral = polygonMessages[index]?['general'] ?? '';
+      selectedMessageMacrodrenagem = polygonMessages[index]?['macrodrenagem'] ?? '';
+      selectedMessageConclusion = polygonMessages[index]?['conclusion'] ?? '';
+      selectedNeighborhoodName = polygonNames[index] ?? '';
+      selectedPolygonColor = polygonColors[index] ?? Colors.transparent;
+      
+      // Atualiza a cor do polígono selecionado para a cor associada
       polygons[index] = Polygon(
         points: polygons[index].points,
         borderColor: polygons[index].borderColor,
         borderStrokeWidth: polygons[index].borderStrokeWidth,
-        color: polygons[index].color!.withOpacity(0.4),
+        color: polygonColors[index], // Cor definida na PolygonData
       );
 
       previousIndex = index;
@@ -100,9 +109,8 @@ class _MapScreenState extends State<MapScreen> {
                 onTap: (tapPosition, point) {
                   for (int i = 0; i < polygons.length; i++) {
                     if (isPointInPolygon(point, polygons[i].points)) {
-                      _setSelectedMessages(i);
-                      // Move the map to the tapped point
-                      mapController.move(point, 14.9);
+                      _setSelectedMessages(i);  // Atualiza a cor e as informações
+                      mapController.move(point, 14.9);  // Move o mapa para o ponto clicado
                       break;
                     }
                   }
@@ -119,7 +127,7 @@ class _MapScreenState extends State<MapScreen> {
               ],
             ),
           ),
-          if (isInfoVisible) 
+          if (isInfoVisible)
             Flexible(
               flex: 2,
               child: Container(
@@ -174,9 +182,7 @@ class _MapScreenState extends State<MapScreen> {
                 ),
                 IconButton(
                   icon: Icon(Icons.map, color: Colors.white),
-                  onPressed: () {
-                    //
-                  },
+                  onPressed: () {},
                 ),
                 IconButton(
                   icon: Icon(Icons.balance, color: Colors.white),

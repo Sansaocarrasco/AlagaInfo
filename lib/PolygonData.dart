@@ -5,7 +5,93 @@ import 'package:latlong2/latlong.dart';
 class PolygonData {
   static List<Polygon> getPolygons() {
     return [
-      // Jardim Amazonas (Vermelho)
+      // Alphaville e Condominios (Inicialmente transparente)
+      Polygon(
+        points: [
+          LatLng(-9.387440966398195, -40.45893159975515),
+          LatLng(-9.38792283201818, -40.4591620540531),
+          LatLng(-9.388573302911249, -40.45976816288397),
+          LatLng(-9.388790471679249, -40.45968049277417),
+          LatLng(-9.388911337359934, -40.45898073258216),
+          LatLng(-9.391052222792048, -40.45619176717507),
+          LatLng(-9.391513805990819, -40.45541509621437),
+          LatLng(-9.389694668630765, -40.45367225396978),
+          LatLng(-9.387435891071913, -40.45197512643301),
+          LatLng(-9.38512879880059, -40.45079252386711),
+          LatLng(-9.383703463091656, -40.449947934626),
+          LatLng(-9.381878547067693, -40.44925841320612),
+          LatLng(-9.375434988400203, -40.44850493954391),
+          LatLng(-9.37170317370634, -40.44678471852933),
+          LatLng(-9.368817789851198, -40.44604137719327),
+          LatLng(-9.366028001398837, -40.44535574934906),
+          LatLng(-9.364203095185434, -40.44486313344108),
+          LatLng(-9.363686311663972, -40.44454302901959),
+          LatLng(-9.361128199181957, -40.44363748363484),
+          LatLng(-9.358982849466502, -40.44263464212668),
+          LatLng(-9.356897800024969, -40.44141681995528),
+          LatLng(-9.356551965177395, -40.44117091337723),
+          LatLng(-9.35411364111186, -40.44584571498586),
+          LatLng(-9.349568683051462, -40.45325854420278),
+          LatLng(-9.353374436796843, -40.46265048676161),
+          LatLng(-9.366266827032616, -40.462388790486),
+          LatLng(-9.374232695241217, -40.45843730193774),
+          LatLng(-9.376218281352543, -40.45883131581003),
+          LatLng(-9.381295515428187, -40.4664068838156),
+          LatLng(-9.383721231160257, -40.46378716032832),
+          LatLng(-9.38546858044627, -40.46171597257017),
+          LatLng(-9.387440966398195, -40.45893159975515),
+        ],
+        borderColor: Colors.white,
+        borderStrokeWidth: 3.0,
+        color: Colors.transparent, // Inicialmente transparente
+      ),
+      // Areia Branca
+
+      Polygon(
+      points: [
+        LatLng(-9.39686979359216, -40.49285488967874),
+        LatLng(-9.397673135810624, -40.49158887241248),
+        LatLng(-9.396687262270564, -40.4909918304328),
+        LatLng(-9.39559886669812, -40.49044291505637),
+        LatLng(-9.394574577092177, -40.48992244360727),
+        LatLng(-9.392630790553106, -40.48910089262493),
+        LatLng(-9.388717170820184, -40.48900655133757),
+        LatLng(-9.385097089101311, -40.48884092656106),
+        LatLng(-9.379834032760895, -40.48852611335746),
+        LatLng(-9.375395813663355, -40.48809789247399),
+        LatLng(-9.373254421879844, -40.48734599747453),
+        LatLng(-9.374815790371143, -40.489298365206),
+        LatLng(-9.375638959155474, -40.49127031286575),
+        LatLng(-9.376529006124645, -40.49563900121459),
+        LatLng(-9.37743592700827, -40.50046126891347),
+        LatLng(-9.379667729961769, -40.50078032156734),
+        LatLng(-9.382903969293315, -40.50108306918116),
+        LatLng(-9.383775267738088, -40.50117291757547),
+        LatLng(-9.38295409824084, -40.50276420384766),
+        LatLng(-9.38238554078183, -40.50366222028716),
+        LatLng(-9.382608586711076, -40.50399481109817),
+        LatLng(-9.38418297055302, -40.50223469914717),
+        LatLng(-9.385858537903731, -40.5005775544259),
+        LatLng(-9.38705283786607, -40.49934302111565),
+        LatLng(-9.386934093696437, -40.49861843029352),
+        LatLng(-9.386718703891571, -40.49784552255289),
+        LatLng(-9.386908222817812, -40.4974962009852),
+        LatLng(-9.387743889723, -40.49644552601532),
+        LatLng(-9.388447686011148, -40.49558726654078),
+        LatLng(-9.389297246157978, -40.49448729824235),
+        LatLng(-9.389775054982367, -40.49383566634111),
+        LatLng(-9.390756510739516, -40.49255196447569),
+        LatLng(-9.391627880321153, -40.49134758960238),
+        LatLng(-9.392229613889151, -40.49053645017829),
+        LatLng(-9.39323641585967, -40.49042752173334),
+        LatLng(-9.39686979359216, -40.49285488967874), // Fechando o polígono
+      ],
+      borderColor: Colors.white,
+      borderStrokeWidth: 3.0,
+      color: Colors.transparent, // Inicialmente transparente
+    ),
+
+      // Jardim Amazonas (Inicialmente transparente)
       Polygon(
         points: [
           LatLng(-9.37521406536559, -40.53755448438904),
@@ -22,9 +108,9 @@ class PolygonData {
         ],
         borderColor: Colors.white,
         borderStrokeWidth: 3.0,
-        color: Colors.red.withOpacity(0), // Cor escondida inicialmente
+        color: Colors.transparent, // Inicialmente transparente
       ),
-      // Antonio Cassimiro (Verde)
+      // Antonio Cassimiro (Inicialmente transparente)
       Polygon(
         points: [
           LatLng(-9.370697053061356, -40.52242682629748),
@@ -65,22 +151,25 @@ class PolygonData {
           LatLng(-9.354094999256333, -40.51635567026972),
           LatLng(-9.358726578443534, -40.52111716103276),
           LatLng(-9.359697561600086, -40.52218636667379),
-          LatLng(-9.361311168767122, -40.52377218700482),
-          LatLng(-9.363044718423815, -40.52549706759762),
-          LatLng(-9.363742651247648, -40.52618498510802),
-          LatLng(-9.370697053061356, -40.52242682629748),
         ],
         borderColor: Colors.white,
         borderStrokeWidth: 3.0,
-        color: Colors.green.withOpacity(0), // Cor escondida inicialmente
+        color: Colors.transparent, // Inicialmente transparente
       ),
     ];
   }
 
-  // Novo método para obter a cor do polígono por índice
+  // Função para retornar a cor do polígono com base no índice da região
   static Color getPolygonColor(int index) {
-    if (index == 0) return Colors.red; // Jardim Amazonas
-    if (index == 1) return Colors.green; // Antonio Cassimiro
-    return Colors.transparent; // Caso inválido
+    switch (index) {
+      case 0: // Alphaville
+        return Colors.green;
+      case 1: // Jardim Amazonas
+        return Colors.red;
+      case 2: // Antonio Cassimiro
+        return Colors.blue;
+      default:
+        return Colors.transparent; // Caso nenhum índice seja fornecido
+    }
   }
 }
