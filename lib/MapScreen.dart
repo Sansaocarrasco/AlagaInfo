@@ -1,9 +1,12 @@
-import 'package:alagainfo/AboutUsPage.dart';
-import 'package:alagainfo/EnvironmentalLawsPage.dart';
+// lib/screens/MapScreen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:alagainfo/PolygonData.dart';
+import 'package:alagainfo/PolygonMessageRepository.dart';
+import 'package:alagainfo/PolygonMessage.dart';
+import 'package:alagainfo/AboutUsPage.dart';
+import 'package:alagainfo/EnvironmentalLawsPage.dart';
 
 class MapScreen extends StatefulWidget {
   @override
@@ -12,11 +15,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late List<Polygon> polygons;
-  
-  // Novo modelo para armazenar mensagens e dados por índice
-  Map<int, Map<String, String>> polygonMessages = {};
-  Map<int, Color> polygonColors = {};
-  Map<int, String> polygonNames = {};
+  late List<PolygonMessage> polygonMessages;  // Lista de mensagens e dados de polígonos
   
   String selectedMessageGeneral = "";
   String selectedMessageMacrodrenagem = "";
@@ -32,24 +31,9 @@ class _MapScreenState extends State<MapScreen> {
   void initState() {
     super.initState();
     polygons = PolygonData.getPolygons();
-
-    // Inicializando as mensagens e as cores dos polígonos
-    _loadPolygonData();
-  }
-
-  // Função para carregar dados dos polígonos de maneira flexível
-  void _loadPolygonData() {
-    // Exemplo de como você pode carregar dados dinamicamente
-    for (int i = 0; i < polygons.length; i++) {
-      polygonMessages[i] = {
-        'general': 'Mensagem geral para o polígono $i',
-        'macrodrenagem': 'Macrodrenagem para o polígono $i',
-        'conclusion': 'Conclusão para o polígono $i',
-      };
-
-      polygonNames[i] = 'Nome do Polígono $i';
-      polygonColors[i] = PolygonData.getPolygonColor(i); // Usando a cor do PolygonData
-    }
+    
+    // Carregar os dados dos polígonos usando o repositório
+    polygonMessages = PolygonMessageRepository.getPolygonMessages();
   }
 
   // Função para atualizar as mensagens e cores com base no índice
@@ -66,18 +50,19 @@ class _MapScreenState extends State<MapScreen> {
       }
 
       // Atualizando as mensagens e dados do polígono
-      selectedMessageGeneral = polygonMessages[index]?['general'] ?? '';
-      selectedMessageMacrodrenagem = polygonMessages[index]?['macrodrenagem'] ?? '';
-      selectedMessageConclusion = polygonMessages[index]?['conclusion'] ?? '';
-      selectedNeighborhoodName = polygonNames[index] ?? '';
-      selectedPolygonColor = polygonColors[index] ?? Colors.transparent;
-      
+      final polygonMessage = polygonMessages[index];
+      selectedMessageGeneral = polygonMessage.general;
+      selectedMessageMacrodrenagem = polygonMessage.macrodrenagem;
+      selectedMessageConclusion = polygonMessage.conclusion;
+      selectedNeighborhoodName = polygonMessage.name;
+      selectedPolygonColor = polygonMessage.color;
+
       // Atualiza a cor do polígono selecionado para a cor associada
       polygons[index] = Polygon(
         points: polygons[index].points,
         borderColor: polygons[index].borderColor,
         borderStrokeWidth: polygons[index].borderStrokeWidth,
-        color: polygonColors[index], // Cor definida na PolygonData
+        color: selectedPolygonColor, // Cor definida na PolygonMessage
       );
 
       previousIndex = index;

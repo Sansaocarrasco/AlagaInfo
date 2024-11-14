@@ -5,7 +5,7 @@ import 'package:latlong2/latlong.dart';
 class PolygonData {
   static List<Polygon> getPolygons() {
     return [
-      // Alphaville e Condominios (Inicialmente transparente)
+      // Alphaville e Condominios
       Polygon(
         points: [
           LatLng(-9.387440966398195, -40.45893159975515),
@@ -91,7 +91,7 @@ class PolygonData {
       color: Colors.transparent, // Inicialmente transparente
     ),
 
-      // Jardim Amazonas (Inicialmente transparente)
+      // Jardim Amazonas
       Polygon(
         points: [
           LatLng(-9.37521406536559, -40.53755448438904),
@@ -110,7 +110,7 @@ class PolygonData {
         borderStrokeWidth: 3.0,
         color: Colors.transparent, // Inicialmente transparente
       ),
-      // Antonio Cassimiro (Inicialmente transparente)
+      // Antonio Cassimiro
       Polygon(
         points: [
           LatLng(-9.370697053061356, -40.52242682629748),
@@ -162,14 +162,33 @@ class PolygonData {
   // Função para retornar a cor do polígono com base no índice da região
   static Color getPolygonColor(int index) {
     switch (index) {
-      case 0: // Alphaville
-        return Colors.green;
-      case 1: // Jardim Amazonas
-        return Colors.red;
-      case 2: // Antonio Cassimiro
-        return Colors.blue;
+      case 0: // Alphaville e Condominios
+        return Colors.red.withOpacity(0.8);
+      case 1:  // Areia Branca
+        return Colors.red.withOpacity(0.8);
+      case 2: // Jardim Amazonas
+        return Colors.blue.withOpacity(0.8);
+      case 3: // Antonio Cassimiro
+        return Colors.blue.withOpacity(0.8);
+      case 4: //
+        return Colors.red.withOpacity(0.8);
+      case 5: //
+        return Colors.red.withOpacity(0.8);
+      case 6: //
+        return Colors.red.withOpacity(0.8);
+      case 7: //
+        return Colors.red.withOpacity(0.8);
+      case 8: //
+        return Colors.blue.withOpacity(0.8);
+      case 9: //
+        return Colors.blue.withOpacity(0.8);
+      case 10: //
+        return Colors.red.withOpacity(0.8);
+      case 11: //
+        return Colors.red.withOpacity(0.8);
       default:
         return Colors.transparent; // Caso nenhum índice seja fornecido
     }
+    
   }
 }
