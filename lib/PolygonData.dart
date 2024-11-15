@@ -1029,7 +1029,7 @@ class PolygonData {
         borderStrokeWidth: 3.0,
         color: Colors.transparent, // Inicialmente transparente
       ),
-      
+
       // KM-2
       Polygon(
         points: [
@@ -1075,28 +1075,96 @@ class PolygonData {
         return Colors.red.withOpacity(0.8);
       case 1:  // Areia Branca
         return Colors.red.withOpacity(0.8);
-      case 2: // Jardim Amazonas
+      case 2: // Bela Vista
         return Colors.blue.withOpacity(0.8);
-      case 3: // Antonio Cassimiro
+      case 3: // Caminho da Universidade
         return Colors.blue.withOpacity(0.8);
-      case 4: //
+      case 4: // Centro (Parte Alta)
         return Colors.red.withOpacity(0.8);
-      case 5: //
+      case 5: // Centro (Parte Baixa)
         return Colors.red.withOpacity(0.8);
-      case 6: //
+      case 6: // Cidade Universitaria e Condominios
         return Colors.red.withOpacity(0.8);
-      case 7: //
+      case 7: // Cohab Massangano
         return Colors.red.withOpacity(0.8);
-      case 8: //
+      case 8: // Concominios Vila Verde e Condominios Mais Viver
         return Colors.blue.withOpacity(0.8);
-      case 9: //
+      case 9: // Condominio Encontro das Aguas
         return Colors.blue.withOpacity(0.8);
-      case 10: //
+      case 10: // Cosme e Damiao
         return Colors.red.withOpacity(0.8);
-      case 11: //
+      case 11: // Distrito Industrial e Colinas do Rio
         return Colors.red.withOpacity(0.8);
-      default:
-        return Colors.transparent; // Caso nenhum índice seja fornecido
+      case 12:  // Dom Avelar
+        return Colors.red.withOpacity(0.8);
+      case 13: // Gercino Coelho
+        return Colors.blue.withOpacity(0.8);
+      case 14: // Henrique Leite e Vila Vitoria
+        return Colors.blue.withOpacity(0.8);
+      case 15: // Idalino
+        return Colors.red.withOpacity(0.8);
+      case 16: // Ipsep
+        return Colors.red.withOpacity(0.8);
+      case 17: // Jardim Amazonas
+        return Colors.red.withOpacity(0.8);
+      case 18: // Jardim Maravilha e Ouro Preto
+        return Colors.red.withOpacity(0.8);
+      case 19: // Jatoba
+        return Colors.blue.withOpacity(0.8);
+      case 20: // Joao de Deus
+        return Colors.blue.withOpacity(0.8);
+      case 21: // Jose e Maria
+        return Colors.red.withOpacity(0.8);
+      case 22: // KM-2
+        return Colors.red.withOpacity(0.8);
+      case 23: // Loteamento Nova Petrolina
+        return Colors.red.withOpacity(0.8);
+      case 24:  // Loteamento Parque Petrolina
+        return Colors.red.withOpacity(0.8);
+      case 25: // Loteamento Recife, Vila Marcela e Condominios
+        return Colors.blue.withOpacity(0.8);
+      case 26: // Monsenhor Bernadino
+        return Colors.blue.withOpacity(0.8);
+      case 27: // Park Sao Goncalo
+        return Colors.red.withOpacity(0.8);
+      case 28: // Parque Massangano
+        return Colors.red.withOpacity(0.8);
+      case 29: // Pedra Linda
+        return Colors.red.withOpacity(0.8);
+      case 30: // Quati
+        return Colors.red.withOpacity(0.8);
+      case 31: // Residencial Brasil e Mangueiras
+        return Colors.blue.withOpacity(0.8);
+      case 32: // Residencial Nova Petrolina
+        return Colors.blue.withOpacity(0.8);
+      case 33: // Residencial Novo Tempo
+        return Colors.red.withOpacity(0.8);
+      case 34: // Residencial Vale Petrolina e Pomares
+        return Colors.red.withOpacity(0.8);
+      case 35: // Rio Corrente
+        return Colors.red.withOpacity(0.8);
+      case 36: // São Goncalo
+        return Colors.red.withOpacity(0.8);
+      case 37: // Sol Nascente (Etapas 01, 02 e 03)
+        return Colors.blue.withOpacity(0.8);
+      case 38: // Terras do Sul
+        return Colors.blue.withOpacity(0.8);
+      case 39: // Vale Dourado
+        return Colors.red.withOpacity(0.8);
+      case 40: // Vila Debora
+        return Colors.red.withOpacity(0.8);
+      case 41: // Vila Eduardo (Parte Alta)
+        return Colors.red.withOpacity(0.8);
+      case 42: // Vila Eduardo (Parte Baixa)
+        return Colors.red.withOpacity(0.8);
+      case 43: // Vila Eulalia
+        return Colors.blue.withOpacity(0.8);
+      case 44: // Vila Moco
+        return Colors.blue.withOpacity(0.8);
+      case 45: // Vivendas, Campos do Conde e Lot Topazio
+        return Colors.red.withOpacity(0.8);
+      default: // Regiões não mapeadas
+        return Colors.transparent;
     }
     
   }
