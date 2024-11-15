@@ -28,7 +28,7 @@ class PolygonMessageRepository {
         general: "Mensagem geral para o polígono 2",
         macrodrenagem: "Informações sobre macrodrenagem para o polígono 2",
         conclusion: "Conclusão para o polígono 2",
-        name: "Jardim Amazonas",
+        name: "Bela Vista",
         color: PolygonData.getPolygonColor(2),
       ),
       
@@ -37,7 +37,7 @@ class PolygonMessageRepository {
         general: "Mensagem geral para o polígono 3",
         macrodrenagem: "Informações sobre macrodrenagem para o polígono 3",
         conclusion: "Conclusão para o polígono 3",
-        name: "Antonio Cassimiro",
+        name: "Caminho da Universidade",
         color: PolygonData.getPolygonColor(3),
       ),
       
