@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'PolygonMessage.dart';
 import 'PolygonData.dart';
 
