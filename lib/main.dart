@@ -42,7 +42,7 @@ class MyHomePage extends StatelessWidget{
         style: GoogleFonts.lato(
           textStyle: TextStyle(
             fontSize: 45,
-              color: Color(0xFF87AAD2), // Corrigido para usar o código de cor hexadecimalr
+              color: Color(0xFF87AAD2), // Corrigido para usar o código de cor hexadecimal
             fontWeight: FontWeight.bold, // Deixa o texto em negrito
           ),
         ),
